@@ -1,23 +1,19 @@
-// Buttons.js
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const Buttons = () => {
     const [counterOne, setCounterOne] = useState(0);
     const [counterTwo, setCounterTwo] = useState(0);
 
-    const handleClickOne = useMemo(() => {
-        return () => {
-            setCounterOne(counterOne + 1);
-            console.log(`Button One Clicked! Counter One: ${counterOne}`);
-        };
-    }, [counterOne]); // Мемоизация функции для кнопки 1
+    // Используем useCallback для мемоизации функций обработчиков
+    const handleClickOne = useCallback(() => {
+        setCounterOne(counterOne + 1);
+        console.log(`Button One Clicked! Counter One: ${counterOne}`);
+    }, [counterOne]);
 
-    const handleClickTwo = useMemo(() => {
-        return () => {
-            setCounterTwo(counterTwo + 1);
-            console.log(`Button Two Clicked! Counter Two: ${counterTwo}`);
-        };
-    }, [counterTwo]); // Мемоизация функции для кнопки 2
+    const handleClickTwo = useCallback(() => {
+        setCounterTwo(counterTwo + 1);
+        console.log(`Button Two Clicked! Counter Two: ${counterTwo}`);
+    }, [counterTwo]);
 
     return (
         <div>
